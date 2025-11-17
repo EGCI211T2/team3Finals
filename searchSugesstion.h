@@ -97,9 +97,9 @@ inline std::string runAutocomplete(std::vector<std::string> dictionary){
         }
 
         if (!suggestions.empty()) { //prints the list of suggestions
-            std::cout << std::endl << "Suggestions: ";
+            std::cout << std::endl << "Suggestions: " << std::endl;
             for (const std::string& s : suggestions) {
-                std::cout << s << " ";
+                std::cout << s << std::endl;
             }
         }
         std::cout << std::flush;
