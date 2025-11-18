@@ -3,7 +3,7 @@
 
 int main() {
     //converting string arr to vector
-    std::string stringArr[] = {"apple", "apply", "apricot", "banana"}; //for compatability (this an example)
+    std::string stringArr[] = {"plastic", "paper", "plastic bag", "banana"}; //for compatability (this an example)
     int arraySize = sizeof(stringArr)/sizeof(stringArr[0]); 
     std::vector<std::string> dictionary(stringArr, stringArr + arraySize); //range constructor
 
