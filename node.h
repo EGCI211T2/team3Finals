@@ -2,49 +2,50 @@
 #define NODE_H
 
 using namespace std;
-class trash
+class node
 {
 private:
     int id;
     string name;
     string type;
-    trash *next;
+    node *next;
 
 public:
-    trash 
-    (int = 0, string n = "Unknown", string t = "Unknown");
+    //node (int = 0, string n = "Unknown", string t = "Unknown");
     void print();
-    void set_next(trash*);
-    trash* get_next();
-    ~trash();
+    void set_next(node*);
+    node* get_next();
+    ~node();
 };
 
-typedef trash *trashPtr;
+typedef node *trashPtr;
 
-trash *trash::get_next()
+node* node::get_next()
 {
     return next;
 }
 
-void trash::set_next (trash *x) //add new node at the end
+void node::set_next (node *x) //add new node at the end
 {
     next = x;
 }
 
-trash::trash(int x, string n, string t)
+/*
+node::node(int x, string n, string t)
 {
     id = x;
     name = n;
     type = t;
     next = NULL;
 }
+*/
 
-void trash::print()
+void node::print()
 {
     cout<< id << " " << name << " " << type << endl;
 }
 
-trash::~trash()
+node::~node()
 {
     cout << "Node deleted" << endl;
 }
