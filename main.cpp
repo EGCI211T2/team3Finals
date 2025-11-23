@@ -1,12 +1,19 @@
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include <string>
 #include <vector>
+#include <conio.h>
+#include <map>
+#include <functional>
+
+
 using namespace std;
 
 #include "trash.h"
 #include "node.h"
 #include "file.h"
+#include "searchSuggestion.h"
 
 int main() {
 
@@ -30,6 +37,17 @@ int main() {
     }
 
     cout << endl;
+
+        //converting string arr to vector
+    std::string stringArr[] = {"plastic", "paper", "plastic bag", "banana"}; //for compatability (this an example)
+    int arraySize = sizeof(stringArr)/sizeof(stringArr[0]); 
+    std::vector<std::string> dictionary(stringArr, stringArr + arraySize); //range constructor
+
+    //searchSuggestion
+    std::string input = runAutocomplete(dictionary); //this junk uses vectors not string arrays
+
+    std::cout << "\n" << input << std::endl;
+
     file_close(myfile);
     return 0;
 }
