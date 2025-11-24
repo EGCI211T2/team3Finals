@@ -51,23 +51,21 @@ public:
         next = NULL;
     }
 
-    trash::trash(int ID, string NAME, string TYPE)
-    {
+    trash::trash(int ID, string NAME, string TYPE) {
         id = ID;
         name = NAME;
         type = TYPE;
+        next = nullptr;
     }
 
-    void trash::print() const //const is to tell the compiler that the valuable cannot be change
-    {
+    void trash::print() const {//const is to tell the compiler that the valuable cannot be change
             cout << endl << "ID: " << id << endl
                  << "Name: " << name << endl
                  << "Type: " << type << endl
                  << endl;
     }
 
-    trash::~trash()
-    {
+    trash::~trash() {
         #if 0
         cout << "trash deleted" << endl;
         #endif

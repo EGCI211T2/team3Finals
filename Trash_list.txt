@@ -1,13 +1,13 @@
 //The type of waste are based of the Thailand's PCD waste categories
 
 0,Name,Type
-1,Plastic bottles,Recyclable waste
-2,Battery,Hazardous waste
-3,Food scraps,Organic waste
-4,Aluminum cans,Recyclable waste
-5,Styrofoam food containers,General waste
-6,Broken smartphones, E-waste
-7,Used syringe,Medical waste
-8,Broken charger,E-waste
-9,Glass bottles,Recyclable
-10,Mosquito spray cans,Hazardous waste
+1,plastic bottles,Recyclable waste
+2,battery,Hazardous waste
+3,food scraps,Organic waste
+4,aluminum cans,Recyclable waste
+5,styrofoam food containers,General waste
+6,broken smartphones, E-waste
+7,used syringe,Medical waste
+8,broken charger,E-waste
+9,glass bottles,Recyclable
+10,mosquito spray cans,Hazardous waste

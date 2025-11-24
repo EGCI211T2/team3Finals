@@ -63,12 +63,12 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
     }
 
     std::string currentInput = "";
-    std::cout << "Enter text (press Esc to exit): ";
+    std::cout << "\n" << "Enter text (press Esc to exit): " << std::endl;
 
     while (true) {
         char c;
         c = _getch();
-        c = tolower(c);
+        //c = tolower(c);
 
         //detect key inputs
         if (c == 27) { // ESC key
@@ -88,7 +88,7 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
 
         //suggestions handler
         if (!currentInput.empty()) { //generates a list of suggestions
-            getSuggestions(root, currentInput, suggestions, 5);
+            getSuggestions(root, currentInput, suggestions, 3);
         }
 
         if(c == 13) { //returns first option in suggestions when ENTER
@@ -106,7 +106,7 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
         std::cout << std::flush;
     }
     // Clean up Trie memory (not shown for brevity)
-    return 0;
+    return "";
 }
 
 
