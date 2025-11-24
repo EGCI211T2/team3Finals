@@ -15,7 +15,7 @@ struct TrieNode {
 };
 
 // Function to insert a word into the Trie
-inline void insertWord(TrieNode* root, const std::string& word) {
+void insertWord(TrieNode* root, const std::string& word) {
     TrieNode* current = root;
     for (char c : word) {
         if (current->children.find(c) == current->children.end()) {
@@ -27,7 +27,7 @@ inline void insertWord(TrieNode* root, const std::string& word) {
 }
 
 // Function to get suggestions based on a prefix
-inline void getSuggestions(TrieNode* root, const std::string& prefix, std::vector<std::string>& suggestions, int maxSuggestions) {
+void getSuggestions(TrieNode* root, const std::string& prefix, std::vector<std::string>& suggestions, int maxSuggestions) {
     TrieNode* current = root;
     for (char c : prefix) {
         if (current->children.find(c) == current->children.end()) {
@@ -56,7 +56,7 @@ inline void getSuggestions(TrieNode* root, const std::string& prefix, std::vecto
     collectWords(current);
 }
 
-inline std::string runAutocomplete(std::vector<std::string> dictionary){
+std::string runAutocomplete(std::vector<std::string> dictionary){
     TrieNode* root = new TrieNode();
     for (const std::string& word : dictionary) {
         insertWord(root, word);
@@ -87,7 +87,7 @@ inline std::string runAutocomplete(std::vector<std::string> dictionary){
 
         //suggestions handler
         if (!currentInput.empty()) { //generates a list of suggestions
-            getSuggestions(root, currentInput, suggestions, 5);
+            getSuggestions(root, currentInput, suggestions, 3);
         }
 
         if(c == 13) { //returns first option in suggestions when ENTER
