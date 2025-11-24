@@ -11,38 +11,17 @@ private:
     node *next;
 
 public:
-    //node (int = 0, string n = "Unknown", string t = "Unknown");
+    node (int idParam = 0, string n = "Unknown", string t = "Unknown", node *next = nullptr) //default values
+        : id(idParam), name(n), type(t), next(next) {} //constructor
     void print();
-    void set_next(node*);
-    node* get_next();
+    void set_next(node* x) {next = x;}
+    node* get_next() {return next;} 
     ~node();
 };
 
-typedef node *trashPtr;
-
-node* node::get_next()
-{
-    return next;
-}
-
-void node::set_next (node *x) //add new node at the end
-{
-    next = x;
-}
-
-/*
-node::node(int x, string n, string t)
-{
-    id = x;
-    name = n;
-    type = t;
-    next = NULL;
-}
-*/
-
 void node::print()
 {
-    cout<< id << " " << name << " " << type << endl;
+    cout<< id << ", " << name << ", " << type << endl;
 }
 
 node::~node()
