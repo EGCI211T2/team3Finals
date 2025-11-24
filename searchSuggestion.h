@@ -106,8 +106,9 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
         std::cout << std::flush;
     }
     // Clean up Trie memory (not shown for brevity)
-    return 0;
+    return "";
 }
 
 
 #endif
+
