@@ -20,7 +20,7 @@ Compare user input with the text file to determine the type of trash (search sug
 #ifndef TRASH_H
 #define TRASH_H
 
-#include <string>
+#include <cstring>
 #include <iostream> 
 
 using namespace std;
@@ -37,6 +37,9 @@ public:
     trash();
     trash(int id, string name, string type);
     //void insert_trash (int x, string n, string t); //add the next node 
+    string getName(){return name;}
+    string getType(){return type;}
+    int getID(){return id;}
     void print() const;
     ~trash();
 };
@@ -65,7 +68,9 @@ public:
 
     trash::~trash()
     {
+        #if 0
         cout << "trash deleted" << endl;
+        #endif
     }
 
 

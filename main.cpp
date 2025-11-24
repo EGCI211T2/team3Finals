@@ -28,6 +28,7 @@ int main() {
     file_read(myfile, items);
 
     //check if everything is in there
+    #if 1
     cout << "Total items loaded: " << items.size() << endl;
 
     for (int i = 0; i < items.size(); i++)
@@ -37,11 +38,13 @@ int main() {
     }
 
     cout << endl;
-
-        //converting string arr to vector
-    std::string stringArr[] = {"plastic", "paper", "plastic bag", "banana"}; //for compatability (this an example)
-    int arraySize = sizeof(stringArr)/sizeof(stringArr[0]); 
-    std::vector<std::string> dictionary(stringArr, stringArr + arraySize); //range constructor
+    #endif
+    
+    //put name of trash into another vector for the searchsuggestion
+    vector<string>dictionary;
+    for (int i = 0; i < items.size(); i++) {
+        dictionary.push_back(items[i].getName());
+    }    
 
     //searchSuggestion
     std::string input = runAutocomplete(dictionary); //this junk uses vectors not string arrays

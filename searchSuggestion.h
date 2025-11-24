@@ -68,6 +68,7 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
     while (true) {
         char c;
         c = _getch();
+        c = tolower(c);
 
         //detect key inputs
         if (c == 27) { // ESC key
@@ -105,7 +106,7 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
         std::cout << std::flush;
     }
     // Clean up Trie memory (not shown for brevity)
-    return 0;
+    return "";
 }
 
 
