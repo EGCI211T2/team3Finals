@@ -2,8 +2,7 @@
 #define NODE_H
 
 using namespace std;
-class node
-{
+class node {
 private:
     int id;
     string name;
@@ -19,13 +18,11 @@ public:
     ~node();
 };
 
-void node::print()
-{
+void node::print() {
     cout<< id << ", " << name << ", " << type << endl;
 }
 
-node::~node()
-{
+node::~node() {
     cout << "Node deleted" << endl;
 }
 

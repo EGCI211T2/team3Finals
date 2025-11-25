@@ -6,6 +6,7 @@
 #include <conio.h>
 #include <map>
 #include <functional>
+#include <utility>
 
 
 using namespace std;
@@ -20,39 +21,18 @@ using namespace std;
 
 int main() {
 
-    ifstream myfile; // for file stuff
     Manager m; // for trash linked lists
-
-    open_file(myfile, "Trash_list.txt");
-
-    skip_lines(myfile, 3);
-
-    /*put the value from the file into class*/
-    vector<trash>items;
-    file_read(myfile, items);
-
-    //check if everything is in there
-    #if 0
-    cout << "Total items loaded: " << items.size() << endl;
-
-    for (int i = 0; i < items.size(); i++)
-    {
-        cout << "Item " << i + 1 << ": ";
-        items[i].print();
-    }
-
-    cout << endl;
-    #endif
     
-    //put name of trash into another vector for the searchsuggestion
-    vector<string>dictionary;
-    for (int i = 0; i < items.size(); i++) {
-        dictionary.push_back(items[i].getName());
-    }    
+    //put name of trash and trash nodes into separate vectors for the searchsuggestion (.first is the string, .second is the trash node)
+    pair<vector<string>, vector<trash>> dictionary=wordBank("Trash_list.txt");
+
+    //put trashBin nodes into a vector
+    std::vector<trashBin> binNery = binBank();
+    
 
     while(1){
         //searchSuggestion
-        std::string input = runAutocomplete(dictionary); //this junk uses vectors not string arrays
+        std::string input = runAutocomplete(dictionary.first); //this junk uses vectors not string arrays
 
         if(input == ""){ // stops asking for more inputs when user press ESC
             break;
@@ -60,17 +40,17 @@ int main() {
         
         //gets information and adds trash to appropriate linked list
         int i=0;
-        for(i; i<items.size(); i++){
-            if(items[i].getName() == input){
+        for(i; i<dictionary.second.size(); i++){
+            if(dictionary.second[i].getName() == input){
                 break;
             }
         }
         
-        m.addTrash(items[i].getID(), items[i].getName(), items[i].getType());
+        m.addTrash(dictionary.second[i].getID(), dictionary.second[i].getName(), dictionary.second[i].getType());
     }
 
     m.printAll();
 
-    file_close(myfile);
+    //file_close(myfile);
     return 0;
 }
