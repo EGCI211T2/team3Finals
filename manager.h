@@ -1,3 +1,6 @@
+/*0 Compost, 1 Plastic Bottle, 2 Recycle, 3 Landfill, 4 Paper/Box, 5 E-waste, 6 Infectious, 7 Hazardous*/
+
+
 #ifndef MANAGER_H
 #define MANAGER_H
 
@@ -7,6 +10,11 @@
 class Manager {
 private:
     unordered_map<string, TrashType*> types;
+    string keyCat[8] = {
+        "Compost", "Plastic Bottle", "Recycle", 
+        "Landfill", "Paper/Box", "E-waste", 
+        "Infectious", "Hazardous"
+    };
 
 public:
     Manager() {}
@@ -22,6 +30,81 @@ public:
         // add to correct linked list
         types[type]->add(newNode);
     }
+
+    vector<trashBin> computeRoute(vector<trashBin>& bins) {
+        vector<trashBin> route;
+
+        // determining what catagories are needed
+        vector<int> needed(8,0);
+
+        for(auto t : types) {
+            string inputCat = t.first;
+
+            for(int i = 0; i < 8; i++) { // find index that matches user input catagory
+                if(inputCat == keyCat[i]) {
+                    needed[i] = 1; // marks catagory as needed
+                    break;
+                }
+            }
+        }
+
+        // user starting position (feel free to change)
+        double userX = 0;
+        double userY = 0;
+
+        while (true) {
+            // check if all needs satisfied
+            bool done = true;
+            for (int v : needed) {
+                if (v == 1) { done = false; break; }
+            }
+            if (done) break;
+
+            trashBin* bestBin = nullptr;
+            double bestDist = 1e9; // 1*10^9
+
+            // find nearest bin that helps with ANY needed type
+            for (auto& b : bins) {
+
+                bool helpful = false;
+                for (int i = 0; i < 8; i++) {
+                    if (needed[i] == 1 && b.getCat()[i] == 1) {
+                        helpful = true;
+                        break;
+                    }
+                }
+
+                if (!helpful) continue;
+
+                double d = b.distanceTo(userX, userY);
+                if (d < bestDist) {
+                    bestDist = d;
+                    bestBin = &b;
+                }
+        }
+
+        if (!bestBin) {
+            cout << "ERROR: No bin can satisfy all categories!" << endl;
+            break;
+        }
+
+        // add chosen bin to route
+        route.push_back(*bestBin);
+
+        // update needed categories (remove those satisfied)
+        for (int i = 0; i < 8; i++) {
+            if (bestBin->getCat()[i] == 1)
+                needed[i] = 0;
+        }
+
+        // move starting point to this bin
+        userX = bestBin->getX();
+        userY = bestBin->getY();
+    }
+
+    return route;
+}
+
 
     void printAll() {
         for (auto& t : types) {

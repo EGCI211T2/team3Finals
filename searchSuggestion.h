@@ -8,6 +8,9 @@
 #include <iostream>
 #include <conio.h>
 
+//working, do not touch!
+
+
 // A simple Trie structure
 struct TrieNode {
     std::map<char, TrieNode*> children;
@@ -105,7 +108,6 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
         }
         std::cout << std::flush;
     }
-    // Clean up Trie memory (not shown for brevity)
     return "";
 }
 

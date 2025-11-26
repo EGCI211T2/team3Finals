@@ -28,6 +28,12 @@ int main() {
 
     //put trashBin nodes into a vector
     std::vector<trashBin> binNery = binBank();
+
+    #if 0
+    for(int i = 0; i < binNery.size(); i++) {
+        binNery[i].print();
+    }
+    #endif
     
 
     while(1){
@@ -46,11 +52,22 @@ int main() {
             }
         }
         
-        m.addTrash(dictionary.second[i].getID(), dictionary.second[i].getName(), dictionary.second[i].getType());
+        m.addTrash(
+            dictionary.second[i].getID(), 
+            dictionary.second[i].getName(), 
+            dictionary.second[i].getType()
+        );
     }
 
-    m.printAll();
+    vector<trashBin> route = m.computeRoute(binNery);
 
-    //file_close(myfile);
+    m.printAll(); // lists user input trash
+
+    cout << "\nYour recommended disposal route:\n";
+    for (auto& b : route) {
+        cout << "- Bin " << b.getName() 
+             << " at (" << b.getX() << ", " << b.getY() << ")\n";
+    }
+
     return 0;
 }

@@ -3,6 +3,7 @@
 
 #include <cstring>
 #include <iostream> 
+#include <cmath>
 
 using namespace std;
 
@@ -20,6 +21,8 @@ private:
 
 public:
     trashBin();
+
+    //fancy ass constructor
     trashBin(int idParam = 0, 
             string n = "", 
             double xa = 0, 
@@ -31,19 +34,25 @@ public:
                         catagory[i] = cat[i];
                     }
                 }
-    
+                
+    // git gud
     double getX() {return x;}
     double getY() {return y;}
     int getID() {return id;}
     int* getCat() {return catagory;}
     string getName() {return name;}
+    void print() const;
+
+    // LL stuff
     void set_next(trashBin* x) {next = x;}
     trashBin* get_next() {return next;} 
-    void print() const;
+
+    // router stuff
+    double distanceTo(double px, double py);
     ~trashBin();
 };
 
-    void trashBin::print() const {//const is to tell the compiler that the valuable cannot be change
+    void trashBin::print() const { // const is to tell the compiler that the valuable cannot be change
             cout << endl << "ID: " << id << endl
                  << "Name: " << name << endl
                  << "Coords: " << x << ", " << y << endl;
@@ -54,7 +63,13 @@ public:
 
     }
 
-    trashBin::~trashBin() {
+    double trashBin::distanceTo(double px, double py) { // returns the distance between inputted cords and site cords
+        double dx = x - px;
+        double dy = y - py;
+        return sqrt(dx*dx + dy*dy);
+    }
+
+    trashBin::~trashBin() { // deezconstructor
         #if 0
         cout << "trashBin deleted" << endl;
         #endif
