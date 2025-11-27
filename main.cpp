@@ -34,6 +34,17 @@ int main() {
         binNery[i].print();
     }
     #endif
+
+    // fancy scanf for user input coordinates of origin
+    string buffer;
+    char leComma;
+    double userX = 0, userY = 0;
+    
+    cout << "Enter coordinates of origin(x,y): ";
+    getline(cin, buffer);
+
+    stringstream ss(buffer);
+    ss >> userX >> leComma >> userY; 
     
 
     while(1){
@@ -59,7 +70,7 @@ int main() {
         );
     }
 
-    vector<trashBin> route = m.computeRoute(binNery);
+    vector<trashBin> route = m.computeRoute(binNery, userX, userY);
 
     m.printAll(); // lists user input trash
 

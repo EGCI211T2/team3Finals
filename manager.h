@@ -1,5 +1,6 @@
 /*0 Compost, 1 Plastic Bottle, 2 Recycle, 3 Landfill, 4 Paper/Box, 5 E-waste, 6 Infectious, 7 Hazardous*/
 
+// make the linked lists for each type of trash, handles the allocation of trash to specific type list, and handles route stuff
 
 #ifndef MANAGER_H
 #define MANAGER_H
@@ -31,7 +32,7 @@ public:
         types[type]->add(newNode);
     }
 
-    vector<trashBin> computeRoute(vector<trashBin>& bins) {
+    vector<trashBin> computeRoute(vector<trashBin>& bins, double userX, double userY) {
         vector<trashBin> route;
 
         // determining what catagories are needed
@@ -47,10 +48,6 @@ public:
                 }
             }
         }
-
-        // user starting position (feel free to change)
-        double userX = 0;
-        double userY = 0;
 
         while (true) {
             // check if all needs satisfied
