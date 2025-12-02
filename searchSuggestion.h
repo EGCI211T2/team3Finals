@@ -6,10 +6,6 @@
 #include <map>
 #include <functional>
 #include <iostream>
-#include <conio.h>
-
-//working, do not touch!
-
 
 // A simple Trie structure
 struct TrieNode {
@@ -106,7 +102,7 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
             getSuggestions(root, currentInput, suggestions, 3);
         }
 
-        if(c == 13) { //returns first option in suggestions when ENTER
+        if(c == '\n' || c == 13) { //returns first option in suggestions when ENTER
             if(!currentInput.empty()) {
                 return suggestions[0];
             }
@@ -125,4 +121,5 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
 
 
 #endif
+
 
