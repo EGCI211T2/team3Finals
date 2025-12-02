@@ -76,15 +76,10 @@ int main() {
         );
     }
 
-    vector<trashBin> route = m.computeRoute(binNery, userX, userY);
+    pair<vector<trashBin>, vector<vector<int>>> result = m.computeRoute(binNery, userX, userY);
 
-    m.printAll(); // lists user input trash
-
-    cout << "\nYour recommended disposal route:\n";
-    for (auto& b : route) {
-        cout << "- Bin " << b.getName() 
-             << " at (" << b.getX() << ", " << b.getY() << ")\n";
-    }
+    m.printBinWithTrash(result);
+    //m.printAll(); // lists user input trash
 
     // need to actually list the trash disposed at said site
 
