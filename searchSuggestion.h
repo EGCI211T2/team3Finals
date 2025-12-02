@@ -8,6 +8,9 @@
 #include <iostream>
 #include <conio.h>
 
+//working, do not touch!
+
+
 // A simple Trie structure
 struct TrieNode {
     std::map<char, TrieNode*> children;
@@ -65,10 +68,22 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
     std::string currentInput = "";
     std::cout << "\n" << "Enter text (press Esc to exit): " << std::endl;
 
+    #ifndef _WIN32
+    // Set terminal to raw mode for non-blocking input on Linux/macOS
+    struct termios oldt, newt;
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    #endif
+
     while (true) {
         char c;
-        c = _getch();
-        //c = tolower(c);
+        #ifdef _WIN32
+            c = _getch();
+        #else
+            read(STDIN_FILENO, &c, 1);
+        #endif
 
         //detect key inputs
         if (c == 27) { // ESC key
@@ -105,7 +120,6 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
         }
         std::cout << std::flush;
     }
-    // Clean up Trie memory (not shown for brevity)
     return "";
 }
 

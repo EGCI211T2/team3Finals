@@ -1,13 +1,103 @@
 //The type of waste are based of the Thailand's PCD waste categories
 
 0,Name,Type
-1,plastic bottles,Recyclable waste
-2,battery,Hazardous waste
-3,food scraps,Organic waste
-4,aluminum cans,Recyclable waste
-5,styrofoam food containers,General waste
-6,broken smartphones, E-waste
-7,used syringe,Medical waste
+1,plastic bottles,Plastic Bottle
+2,battery,Hazardous
+3,food scraps,Compost
+4,aluminum cans,Recycle
+5,styrofoam food containers,Landfill
+6,broken smartphones,E-waste
+7,used syringe,Infectious
 8,broken charger,E-waste
-9,glass bottles,Recyclable
-10,mosquito spray cans,Hazardous waste
+9,glass bottles,Recycle
+10,mosquito spray cans,Hazardous
+11,banana peels,Compost
+12,apple cores,Compost
+13,newspaper,Paper/Box
+14,cardboard packaging,Paper/Box
+15,plastic water bottle,Plastic Bottle
+16,plastic soda bottle,Plastic Bottle
+17,aluminum foil,Recycle
+18,glass jars,Recycle
+19,used tissue,Landfill
+20,ceramic plate shards,Landfill
+21,old laptop,E-waste
+22,damaged USB cable,E-waste
+23,expired medicine,Hazardous
+24,paint thinner,Hazardous
+25,blood-stained bandage,Infectious
+26,used face mask,Infectious
+27,shoe box,Paper/Box
+28,vegetable scraps,Compost
+29,shampoo bottle,Plastic Bottle
+30,broken light bulb,Hazardous
+31,cooked rice leftovers,Compost
+32,tea bags,Compost
+33,paper cups,Paper/Box
+34,paper bags,Paper/Box
+35,cold drink plastic cup,Plastic Bottle
+36,detergent bottle,Plastic Bottle
+37,steel cans,Recycle
+38,glass plates,Recycle
+39,dirty napkins,Landfill
+40,broken mug,Landfill
+41,old keyboard,E-waste
+42,damaged headphones,E-waste
+43,pesticide container,Hazardous
+44,bleach bottle,Hazardous
+45,used cotton swab,Infectious
+46,band-aid with blood,Infectious
+47,paper envelope,Paper/Box
+48,tissue box,Paper/Box
+49,orange peels,Compost
+50,used coffee grounds,Compost
+51,plastic milk bottle,Plastic Bottle
+52,plastic cooking oil bottle,Plastic Bottle
+53,steel food can,Recycle
+54,glass cup,Recycle
+55,toilet paper roll,Landfill
+56,broken bricks,Landfill
+57,old mouse,E-waste
+58,tablet battery,E-waste
+59,nail polish remover,Hazardous
+60,mercury thermometer,Hazardous
+61,gauze pad,Infectious
+62,used medical glove,Infectious
+63,paper instruction manual,Paper/Box
+64,notebook paper,Paper/Box
+65,potato peels,Compost
+66,egg shells,Compost
+67,sports drink bottle,Plastic Bottle
+68,plastic packaging bottle,Plastic Bottle
+69,metal tin,Recycle
+70,glass perfume bottle,Recycle
+71,used sticky tape,Landfill
+72,broken toy plastic parts,Landfill
+73,damaged power bank,E-waste
+74,old circuit board,E-waste
+75,insecticide spray can,Hazardous
+76,chemical cleaner,Hazardous
+77,used surgical mask,Infectious
+78,used IV tubing,Infectious
+79,folded cartons,Paper/Box
+80,paper binder sheets,Paper/Box
+81,leftover vegetables,Compost
+82,bread crusts,Compost
+83,juice plastic bottle,Plastic Bottle
+84,plastic medicine bottle,Plastic Bottle
+85,copper wire scraps,Recycle
+86,glass wine bottle,Recycle
+87,used sponge,Landfill
+88,old slippers,Landfill
+89,broken earphones,E-waste
+90,damaged remote control,E-waste
+91,lead paint chips,Hazardous
+92,old chemical container,Hazardous
+93,contaminated gauze,Infectious
+94,used wound dressing,Infectious
+95,cardboard shipping box,Paper/Box
+96,old documents,Paper/Box
+97,fruit peels,Compost
+98,coffee filters,Compost
+99,plastic cosmetic bottle,Plastic Bottle
+100,plastic detergent jug,Plastic Bottle
