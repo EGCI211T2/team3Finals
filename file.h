@@ -20,6 +20,23 @@ void open_file(ifstream &f, const string &filename)
     }
 }
 
+#ifndef _WIN32
+void normalize(std::string &s) { 
+    // Remove UTF-8 BOM
+    if (s.size() >= 3 &&
+        (unsigned char)s[0] == 0xEF &&
+        (unsigned char)s[1] == 0xBB &&
+        (unsigned char)s[2] == 0xBF) {
+        s.erase(0, 3);
+    }
+
+    // Remove trailing '\r' from Windows CRLF files
+    if (!s.empty() && s.back() == '\r') {
+        s.pop_back();
+    }
+}
+#endif
+
 void skip_lines(ifstream &f, int n)// n for line skips in the files
 {
     string line;
@@ -47,6 +64,12 @@ void file_read(ifstream &f, vector<trash> &items) //put things in the file into 
         getline(ss, id_str, ',');
         getline(ss, name, ',');
         getline(ss, type, ',');
+
+        #ifndef _WIN32
+        normalize(id_str);
+        normalize(name);
+        normalize(type);
+        #endif
 
         int id = stoi(id_str);
 
@@ -108,6 +131,14 @@ std::vector<trashBin> binBank() {
         getline(ss, x, ',');
         getline(ss, y, ',');
         getline(ss, cat, ',');
+
+        #ifndef _WIN32
+        normalize(id_str);
+        normalize(name);
+        normalize(x);
+        normalize(y);
+        normalize(cat);
+        #endif
 
         int id = stoi(id_str);
 
