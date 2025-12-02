@@ -1,4 +1,23 @@
+# Normalize line endings
+* text=auto
+
+# Force LF for source code
 *.cpp text eol=lf
-*.h   text eol=lf
 *.hpp text eol=lf
+*.h   text eol=lf
+*.c   text eol=lf
+
+# Common text files
 *.txt text eol=lf
+*.md  text eol=lf
+
+# Prevent CRLF in scripts
+*.sh text eol=lf
+
+# Binary files (no line-end normalization)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary
