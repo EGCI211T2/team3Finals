@@ -3,11 +3,17 @@
 #include <cstring>
 #include <string>
 #include <vector>
-#include <conio.h>
 #include <map>
 #include <functional>
 #include <utility>
 
+// For non-blocking input (platform-specific)
+#ifdef _WIN32
+#include <conio.h>
+#else
+#include <termios.h>
+#include <unistd.h>
+#endif
 
 using namespace std;
 
@@ -79,6 +85,8 @@ int main() {
         cout << "- Bin " << b.getName() 
              << " at (" << b.getX() << ", " << b.getY() << ")\n";
     }
+
+    // need to actually list the trash disposed at said site
 
     return 0;
 }
