@@ -118,6 +118,7 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
                 return suggestions[0];
             } else {
                 std::cout << endl << "Invalid input, try again" << endl;
+                currentInput = "";
                 continue;
             }
         }
