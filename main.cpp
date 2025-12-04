@@ -6,6 +6,7 @@
 #include <map>
 #include <functional>
 #include <utility>
+#include <typeinfo>
 
 // For non-blocking input (platform-specific)
 #ifdef _WIN32
@@ -45,12 +46,19 @@ int main() {
     string buffer;
     char leComma;
     double userX = 0, userY = 0;
+    double myDouble = 29.32;
     
-    cout << "Enter coordinates of origin(x,y): ";
-    getline(cin, buffer);
+    do { // input protection for user cords
+        cout << "Enter coordinates of origin(x,y): ";
+        getline(cin, buffer);
 
-    stringstream ss(buffer);
-    ss >> userX >> leComma >> userY; 
+        stringstream ss(buffer);
+        if (!(ss >> userX >> leComma >> userY)) { // check input
+            leComma = '\0'; // force failure
+        }
+
+    } while (leComma != ',');
+    
     
 
     while(1){
@@ -76,17 +84,10 @@ int main() {
         );
     }
 
-    vector<trashBin> route = m.computeRoute(binNery, userX, userY);
+    pair<vector<trashBin>, vector<vector<int>>> result = m.computeRoute(binNery, userX, userY);
 
-    m.printAll(); // lists user input trash
-
-    cout << "\nYour recommended disposal route:\n";
-    for (auto& b : route) {
-        cout << "- Bin " << b.getName() 
-             << " at (" << b.getX() << ", " << b.getY() << ")\n";
-    }
-
-    // need to actually list the trash disposed at said site
+    m.printBinWithTrash(result);
+    //m.printAll(); // lists user input trash
 
     return 0;
 }

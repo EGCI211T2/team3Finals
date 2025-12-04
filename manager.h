@@ -8,6 +8,12 @@
 #include <unordered_map>
 #include "trashType.h"
 
+// ANSI escape codes for colors
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define BLUE    "\033[34m"
+
 class Manager {
 private:
     unordered_map<string, TrashType*> types;
@@ -32,11 +38,14 @@ public:
         types[type]->add(newNode);
     }
 
-    vector<trashBin> computeRoute(vector<trashBin>& bins, double userX, double userY) {
-        vector<trashBin> route;
+    std::pair<std::vector<trashBin>, std::vector<std::vector<int>>> computeRoute(vector<trashBin>& bins, double userX, double userY) {
+        std::vector<trashBin> route;
+        std::vector<std::vector<int>> categoriesPerBin; // vector in a vector... 
 
         // determining what catagories are needed
         vector<int> needed(8,0);
+
+        vector<int> neededCatLog; // keeps track of what catagory for which bin
 
         for(auto t : types) {
             string inputCat = t.first;
@@ -71,37 +80,66 @@ public:
                     }
                 }
 
-                if (!helpful) continue;
+                if (!helpful) continue; // No bins can satisfy a catagory
 
                 double d = b.distanceTo(userX, userY);
                 if (d < bestDist) {
                     bestDist = d;
                     bestBin = &b;
                 }
+            }
+
+            if (!bestBin) {
+                cout << "ERROR: No bin can satisfy all categories!" << endl;
+                break;
+            }
+
+            // add chosen bin to route
+            route.push_back(*bestBin);
+
+            std::vector<int> binCats;
+
+            // update needed categories (remove those satisfied) and record categories satisfied by this bin
+            for (int i = 0; i < 8; i++) {
+                if (bestBin->getCat()[i] == 1 && needed[i] == 1) {
+                    needed[i] = 0;
+                    binCats.push_back(i);
+                }
+            }
+
+            categoriesPerBin.push_back(binCats);
+
+            // move starting point to this bin
+            userX = bestBin->getX();
+            userY = bestBin->getY();
         }
 
-        if (!bestBin) {
-            cout << "ERROR: No bin can satisfy all categories!" << endl;
-            break;
-        }
-
-        // add chosen bin to route
-        route.push_back(*bestBin);
-
-        // update needed categories (remove those satisfied)
-        for (int i = 0; i < 8; i++) {
-            if (bestBin->getCat()[i] == 1)
-                needed[i] = 0;
-        }
-
-        // move starting point to this bin
-        userX = bestBin->getX();
-        userY = bestBin->getY();
+        return {route, categoriesPerBin};
     }
 
-    return route;
-}
+    void printBinWithTrash(const std::pair<std::vector<trashBin>, std::vector<std::vector<int>>>& result) {
+        std::vector<trashBin> route = result.first;
+        const auto& categoriesPerBin = result.second;
 
+        for (size_t i = 0; i < route.size(); ++i) {
+            cout << GREEN << "Bin " << route[i].getName()
+                 << " at (" << route[i].getX() << ", " << route[i].getY() << ")\n" << RESET;
+
+            cout << "Dispose: " << endl;
+
+            for (int catIndex : categoriesPerBin[i]) { // prevent crashing, Im out of my wits to fix this one
+                const string& catName = keyCat[catIndex];
+                auto it = types.find(catName);
+                if (it != types.end() && it->second != nullptr) {
+                    it->second->print();
+               } else {
+                    // cout << "  (No TrashType for " << catName << ")\n";
+                }
+            }
+
+            cout << endl;
+        }
+    }
 
     void printAll() {
         for (auto& t : types) {
