@@ -7,7 +7,6 @@
 #include <sstream>
 #include <vector>
 #include <utility>
-using namespace std;
 
 #include "trash.h"
 #include "trashBin.h"

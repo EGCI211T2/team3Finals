@@ -23,7 +23,6 @@ Compare user input with the text file to determine the type of trash (search sug
 #include <cstring>
 #include <iostream> 
 
-using namespace std;
 
 class trash {
     
