@@ -68,11 +68,8 @@ public:
         return sqrt(dx*dx + dy*dy);
     }
 
-    trashBin::~trashBin() { // deezconstructor
-        #if 0
-        cout << "trashBin deleted" << endl;
-        #endif
-    }
+    trashBin::~trashBin()  // deezconstructor
+    {}
 
 
 #endif

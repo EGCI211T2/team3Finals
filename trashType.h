@@ -54,6 +54,15 @@ public:
         }
         std::cout << std::endl;
     }
+
+    ~TrashType() {
+    node* cur = head;
+    while (cur != nullptr) {
+        node* next = cur->get_next();
+        delete cur;
+        cur = next;
+        }
+    }
 };
 
 #endif
