@@ -55,6 +55,17 @@ void getSuggestions(TrieNode* root, const std::string& prefix, std::vector<std::
     collectWords(current);
 }
 
+void deleteTrie(TrieNode* node) { // deconstructor
+    if (!node) return;
+
+    for (auto& [ch, child] : node->children) {
+        deleteTrie(child);
+    }
+
+    delete node;
+}
+
+
 std::string runAutocomplete(std::vector<std::string> dictionary){
     TrieNode* root = new TrieNode();
     for (const std::string& word : dictionary) {
@@ -97,18 +108,18 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
         std::cout << "\r" << std::string(80, ' ') << "\r"; // Clear line
         std::cout << "Enter text (enter to select): " << currentInput;
 
-        //suggestions handler
-        if (!currentInput.empty()) { //generates a list of suggestions
+        // suggestions handler
+        if (!currentInput.empty()) { // generates a list of suggestions
             getSuggestions(root, currentInput, suggestions, 3);
         }
 
-        if(c == '\n' || c == 13) { //returns first option in suggestions when ENTER
+        if(c == '\n' || c == 13) { // returns first option in suggestions when ENTER
             if(!currentInput.empty()) {
                 return suggestions[0];
             }
         }
 
-        if (!suggestions.empty()) { //prints the list of suggestions
+        if (!suggestions.empty()) { // prints the list of suggestions
             std::cout << std::endl << "Suggestions: " << std::endl;
             for (const std::string& s : suggestions) {
                 std::cout << s << std::endl;
@@ -116,6 +127,13 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
         }
         std::cout << std::flush;
     }
+
+    // house keeping
+    #ifndef _WIN32
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt); // restore terminal mode
+    #endif
+
+    deleteTrie(root);
     return "";
 }
 
