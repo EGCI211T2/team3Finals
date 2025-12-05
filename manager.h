@@ -146,6 +146,13 @@ public:
             t.second->print();
         }
     }
+
+        ~Manager() {
+        for (auto &entry : types) {
+            delete entry.second;   // free each TrashType*
+        }
+    }
+
 };
 
 #endif

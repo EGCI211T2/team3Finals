@@ -63,11 +63,8 @@ public:
                  << endl;
     }
 
-    trash::~trash() {
-        #if 0
-        cout << "trash deleted" << endl;
-        #endif
-    }
+    trash::~trash() 
+    {}
 
 
 #endif

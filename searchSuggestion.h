@@ -114,8 +114,12 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
         }
 
         if(c == '\n' || c == 13) { // returns first option in suggestions when ENTER
-            if(!currentInput.empty()) {
+            if(!currentInput.empty() && !suggestions.empty()) {
                 return suggestions[0];
+            } else {
+                std::cout << endl << "Invalid input, try again" << endl;
+                currentInput = "";
+                continue;
             }
         }
 
