@@ -13,6 +13,16 @@ struct TrieNode {
     std::vector<std::string> words; // Store  words ending at this node
 };
 
+void clearscreen()
+{
+        // Clear the screen based on the operating system
+    #ifdef _WIN32 // For Windows
+        system("cls");
+    #else // For Unix-like systems (Linux, macOS)
+        system("clear");
+    #endif
+}
+
 // Function to insert a word into the Trie
 void insertWord(TrieNode* root, const std::string& word) {
     TrieNode* current = root;
@@ -73,7 +83,8 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
     }
 
     std::string currentInput = "";
-    std::cout << "\n" << "Enter text (press Esc to exit): " << std::endl;
+    std::cout << "\n\n=== Trash Search ===\n";
+    std::cout << "Enter trash name (press Esc to exit): " << std::endl;
 
     #ifndef _WIN32
     // Set terminal to raw mode for non-blocking input on Linux/macOS
@@ -94,6 +105,8 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
 
         //detect key inputs
         if (c == 27) { // ESC key
+            clearscreen();
+            cout << "Searching finished." << endl;
             break;
         } else if (c == '\b' || c == 127) { // Backspace
             if (!currentInput.empty()) {
@@ -104,17 +117,26 @@ std::string runAutocomplete(std::vector<std::string> dictionary){
         }
 
         // Clear previous output and display current input
+
+        clearscreen();
+
         std::vector<std::string> suggestions;
         std::cout << "\r" << std::string(80, ' ') << "\r"; // Clear line
-        std::cout << "Enter text (enter to select): " << currentInput;
+        std::cout << "===Trash search===" << endl << "Enter trash name (enter to select and ESC to exit):\n " << currentInput;
 
         // suggestions handler
         if (!currentInput.empty()) { // generates a list of suggestions
             getSuggestions(root, currentInput, suggestions, 3);
+        } 
+
+        if (suggestions.empty()) {
+            std::cout << endl << "No matches found for \"" << currentInput << "\". Try again.\n";
         }
 
         if(c == '\n' || c == 13) { // returns first option in suggestions when ENTER
             if(!currentInput.empty() && !suggestions.empty()) {
+                clearscreen();
+                cout << endl << suggestions[0] << " is added to your list.";
                 return suggestions[0];
             } else {
                 std::cout << endl << "Invalid input, try again" << endl;

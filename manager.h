@@ -121,6 +121,7 @@ public:
         std::vector<trashBin> route = result.first;
         const auto& categoriesPerBin = result.second;
 
+        cout << "\n===Bin list===\n";
         for (size_t i = 0; i < route.size(); ++i) {
             cout << GREEN << "Bin " << route[i].getName()
                  << " at (" << route[i].getX() << ", " << route[i].getY() << ")\n" << RESET;

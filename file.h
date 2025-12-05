@@ -51,7 +51,7 @@ void file_read(ifstream &f, vector<trash> &items) //put things in the file into 
     items.reserve(100);//reserve the space
     string line;
         // Read the rest of the file
-    cout << "Reading remaining lines:\n";
+    //cout << "Reading remaining lines:\n";
     while (getline(f, line)) {
         //cout << line << endl;
         if (line.empty()) continue;
@@ -116,7 +116,7 @@ std::vector<trashBin> binBank() {
     binlog.reserve(100);//reserve the space
     string line;
         // Read the rest of the file
-    cout << "Reading remaining lines:\n";
+    //cout << "Reading remaining lines:\n";
     while (getline(myfile, line)) {
         //cout << line << endl;
         if (line.empty()) continue;

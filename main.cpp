@@ -48,13 +48,18 @@ int main() {
     double userX = 0, userY = 0;
     double myDouble = 29.32;
     
+    cout << "Welcome to trash+, where you can find where to throw your trash away." << endl;
+    cout << "Enter your coordinates, and trash(s)' name that you would like to throw away." << endl;
+    cout << "The program will tell you the type of trash and the closest bin to you." << endl << endl;
+
     do { // input protection for user cords
-        cout << "Enter coordinates of origin(x,y): ";
+        cout << "Enter coordinates of origin (x,y): ";
         getline(cin, buffer);
 
         stringstream ss(buffer);
         if (!(ss >> userX >> leComma >> userY)) { // check input
             leComma = '\0'; // force failure
+            cout << "invalid, try again" << endl;
         }
 
     } while (leComma != ',');
